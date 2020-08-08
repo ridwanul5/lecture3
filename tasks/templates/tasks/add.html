@@ -1,10 +1,23 @@
 {% extends "tasks/layout.html" %}
 
 {% block body_changable %}
-    <h1> Add Tasks (new) </h1>
+    <h1> Add Tasks Abc </h1>
     <form>
         <input type = "text" name = "task_form">
         <input type = "submit"> 
 
     </form>
+    <a href="{% url 'tasks:index' %}">View All Tasks</a>
 {% endblock %}
+
+<!--
+BUG: 
+The current path, tasks/{% url 'tasks:index' %, didn't match any of these.
+
+CORRECT:
+<a href="{% url 'tasks:index' %}">View All Tasks</a>
+previous wrong: 
+<a href="{% url 'tasks:index' %}>View All Tasks</a>
+
+
+-->
