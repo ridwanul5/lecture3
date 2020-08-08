@@ -1,11 +1,12 @@
 {% extends "tasks/layout.html" %}
 
 {% block body_changable %}
-    <h1> Add Tasks Abcd </h1>
+    <h1> Add Tasks Abcde </h1>
     <form action="{% url 'tasks:add' %}" method="post">
         {% csrf_token %}
-        <input type = "text" name = "task_form">
+        {{ form }}
         <input type = "submit"> 
+        
 
     </form>
     <a href="{% url 'tasks:index' %}">View All Tasks</a>
