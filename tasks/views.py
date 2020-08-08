@@ -8,7 +8,8 @@ class NewTaskForm(forms.Form):
     priority = forms.IntegerField(label="Priority", min_value=1, max_value=4)
     # priority : another variable for forms 
 # Create your views here.
-tasks_py = ["foo", "boo", "baz"]
+
+tasks_py = []
 
 def index(request): 
     return render(request, "tasks/index.html", {
@@ -21,7 +22,7 @@ def add(request):
         if form.is_valid():
             task = form.cleaned_data["task"]
             tasks_py.append(task) #task_py e add hobe (not tasks_html)
-
+            return HttpResponseRedirect(reverse("tasks:index"))
         else:
             return render(request, "tasks/add.html", {
                 "form": form
