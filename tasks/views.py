@@ -9,11 +9,13 @@ class NewTaskForm(forms.Form):
     # priority : another variable for forms 
 # Create your views here.
 
-tasks_py = []
 
-def index(request): 
+
+def index(request):
+    if "tasks_py" not in request.session:
+        request.session["tasks_py"] = []
     return render(request, "tasks/index.html", {
-        "tasks_html": tasks_py
+        "tasks_html": request.session["tasks_py"]
     })
 
 def add(request):
@@ -21,13 +23,13 @@ def add(request):
         form = NewTaskForm(request.POST)
         if form.is_valid():
             task = form.cleaned_data["task"]
-            tasks_py.append(task) #task_py e add hobe (not tasks_html)
+            request.session["tasks_py"] += [task]
             return HttpResponseRedirect(reverse("tasks:index"))
         else:
             return render(request, "tasks/add.html", {
                 "form": form
             })
-    
-    return render(request, "tasks/add.html", {
-        "form": NewTaskForm()
-    })
+    else:
+        return render(request, "tasks/add.html", {
+            "form": NewTaskForm()
+        })
