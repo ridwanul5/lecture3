@@ -5,12 +5,12 @@ from django.urls import reverse
 
 class NewTaskForm(forms.Form):
     task = forms.CharField(label="New Task")
-    priority = forms.IntegerField(label="Priority", min_value=1, max_value=4)
+    #priority = forms.IntegerField(label="Priority", min_value=1, max_value=4)
     # priority : another variable for forms 
+
+
+
 # Create your views here.
-
-
-
 def index(request):
     if "tasks_py" not in request.session:
         request.session["tasks_py"] = []
