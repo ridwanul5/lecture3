@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Tasks</title>
-    </head>
-    <body>
-        <h1> Add Tasks </h1>
-        <form>
-            <input type = "text" name = "task_form">
-            <input type = "submit">
+{% extends "tasks/layout.html" %}
 
-        </form>
-    </body>
-</html> 
+{% block body_changable %}
+    <h1> Add Tasks (new) </h1>
+    <form>
+        <input type = "text" name = "task_form">
+        <input type = "submit"> 
+
+    </form>
+{% endblock %}
